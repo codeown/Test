@@ -22,13 +22,13 @@ namespace Test.Controllers
             return View();
         }
 
-        [HttpGet]
+        [HttpGet] //Указываем какой вид запроса будет происходить. Тут GET
         public ActionResult Buy(int id)
         {
             ViewBag.BookId = id;
             return View();
         }
-        [HttpPost]
+        [HttpPost] //POST запрос
         public string Buy(Purchase purchase)
         {
             purchase.Date = DateTime.Now;
