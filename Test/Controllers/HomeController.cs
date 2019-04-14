@@ -22,18 +22,22 @@ namespace Test.Controllers
             return View();
         }
 
-        public ActionResult About()
+        [HttpGet]
+        public ActionResult Buy(int id)
         {
-            ViewBag.Message = "Your application description page.";
-
+            ViewBag.BookId = id;
             return View();
         }
-
-        public ActionResult Contact()
+        [HttpPost]
+        public string Buy(Purchase purchase)
         {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            purchase.Date = DateTime.Now;
+            // добавляем информацию о покупке в базу данных
+            db.Purchases.Add(purchase);
+            // сохраняем в бд все изменения
+            db.SaveChanges();
+            return "Спасибо," + purchase.Person + ", за покупку!";
         }
+                
     }
 }
